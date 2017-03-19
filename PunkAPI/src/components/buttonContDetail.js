@@ -3,38 +3,61 @@ import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import fetchBeers from '../actions/index';
 
-class ButtonContDetail extends Component{
+class ButtonContDetail extends Component {
 
-    componentWillMount(){
+    componentWillMount() {
         this.props.fetchBeers('/random')
     }
 
-    handleClick = (e) =>{
-        e.preventDefault();
+    handleRandomClick = (event) => {
+        event.preventDefault();
         this.props.fetchBeers('/random');
-        console.log('state', this.state);
-        console.log('props', this.props.beerList.beers[0].name);
+    };
+
+    handleFubarClick = (event) => {
+        event.preventDefault();
+        this.props.fetchBeers('?ids=24');
+    };
+
+    handleHeavyClick = (event) => {
+        event.preventDefault();
+        this.props.fetchBeers('?abv_gt=20')
     };
 
     render() {
         return (
-            <button
-                className="btn btn-default"
-                onClick={this.handleClick}
-            >
-                I'm Feeling Lucky
-            </button>
+            <div>
+                <button
+                    className="btn btn-default"
+                    onClick={this.handleRandomClick}
+                >
+                    I'm Feeling Lucky
+                </button>
+                <button
+                    className="btn btn-default"
+                    onClick={this.handleFubarClick}
+                >
+                    Let's Get Fubar'd
+                </button>
+
+                <button
+                    className="btn btn-default"
+                    onClick={this.handleHeavyClick}
+                >
+                    Show me What You Got
+                </button>
+            </div>
         )
     }
 }
 
 
-function mapDispatchToProps(dispatch){
+function mapDispatchToProps(dispatch) {
     return bindActionCreators({fetchBeers}, dispatch)
 }
 
-function mapStateToProps(state){
-    return{beerList: state.beerList}
+function mapStateToProps(state) {
+    return {beerList: state.beerList}
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(ButtonContDetail);

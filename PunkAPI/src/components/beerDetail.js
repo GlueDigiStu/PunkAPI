@@ -4,7 +4,6 @@ import {connect} from 'react-redux';
 class BeerDetail extends Component {
     constructor(props) {
         super(props);
-        // this.props = {beerList : { name: []}}
     }
 
     componentWillUpdate() {
