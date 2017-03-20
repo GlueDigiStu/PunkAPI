@@ -1,8 +1,8 @@
 import React, {Component} from 'react';
 import SearchBar from './searchBar';
 import BeerDetail from './beerDetail';
-import BeerList from './beerList';
 import ButtonCont from './buttonCont';
+import BeerList from './beerList';
 
 export default class App extends Component {
     render() {
@@ -13,8 +13,9 @@ export default class App extends Component {
                     <SearchBar/>
                 </div>
                 <div className="row">
-                    <BeerDetail/>
-                    <BeerList/>
+                        <BeerDetail/>
+                        <BeerList/>
+
                 </div>
                 <div className="row">
                     <ButtonCont/>

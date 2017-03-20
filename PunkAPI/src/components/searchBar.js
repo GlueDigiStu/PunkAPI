@@ -1,5 +1,8 @@
 import React, {Component} from 'react';
-import axios from 'axios';
+// import axios from 'axios';
+import {connect} from 'react-redux';
+import {bindActionCreators} from 'redux';
+import fetchBeers from '../actions/index';
 
 
 class SearchBar extends Component {
@@ -7,25 +10,23 @@ class SearchBar extends Component {
         super(props);
         this.state = {value: ''};
         this.handleChange = this.handleChange.bind(this);
+        this.handleSubmit = this.handleSubmit.bind(this);
     }
 
     handleChange(event) {
         this.setState({value: event.target.value});
-        const request = axios.get('https://api.punkapi.com/v2/beers/beerList');
-        console.log('request:',request);
-            // .then(function (response) {
-            //     console.log(response);
-            // })
-            // .catch(function (error) {
-            //     console.log(error);
-            // });
+    }
+
+    handleSubmit(event){
+        event.preventDefault();
+        this.props.fetchBeers(`?beer_name=${this.state.value}`);
     }
 
 
     render() {
         return (
             <div>
-                <form>
+                <form onSubmit={this.handleSubmit}>
                     <div className="col-xs-10">
                         <input
                             type="text"
@@ -45,4 +46,13 @@ class SearchBar extends Component {
     }
 }
 
-export default SearchBar;
+
+function mapDispatchToProps(dispatch) {
+    return bindActionCreators({fetchBeers}, dispatch)
+}
+
+function mapStateToProps(state) {
+    return {beerList: state.beerList}
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(SearchBar);
