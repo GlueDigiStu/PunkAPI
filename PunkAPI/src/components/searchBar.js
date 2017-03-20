@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 // import axios from 'axios';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
-import fetchBeers from '../actions/index';
+import {fetchBeers} from '../actions/index';
 
 
 class SearchBar extends Component {

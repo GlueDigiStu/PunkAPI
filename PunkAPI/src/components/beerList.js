@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
-import fetchBeers from '../actions/index';
+import {fetchBeers, showBeer} from '../actions/index';
 
 class BeerList extends Component {
     constructor(props) {
@@ -14,14 +14,14 @@ class BeerList extends Component {
             return (
                 <li
                     key={beers.name}
+                    //{/*onClick={() => this.props.fetchBeers(`?beer_name=${beers.name}`)}*/}
+                    onClick={() => this.props.beerList.activeBeer = this.props.showBeer(`?beer_name=${beers.name}`)}
                     className="list-group-item">
                     {beers.name}
                 </li>
             )
         })
     }
-
-
 
     render(){
         if(this.props.beerList) {
@@ -39,7 +39,7 @@ class BeerList extends Component {
 }
 
 function mapDispatchToProps(dispatch) {
-    return bindActionCreators({fetchBeers}, dispatch)
+    return bindActionCreators({fetchBeers, showBeer}, dispatch)
 }
 
 function mapStateToProps(state) {

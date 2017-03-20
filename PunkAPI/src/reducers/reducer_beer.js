@@ -1,12 +1,17 @@
-import {FETCH_BEERS} from '../actions/index';
+import {FETCH_BEERS, FETCH_BEER} from '../actions/index';
+
 
 export default function(state= null, action){
-    console.log('action Received:', action);
     switch(action.type){
         case FETCH_BEERS :
-            // return [action.payload.data, ...state];
+            console.log(action.payload);
             return Object.assign({}, state, {
-                beers : action.payload.data
+                beers : action.payload.data,
+                activeBeer : action.payload.data[0]
+            });
+        case FETCH_BEER :
+            return Object.assign({}, state, {
+                activeBeer : action.payload.data[0]
             })
     }
 

@@ -1,7 +1,7 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
-import fetchBeers from '../actions/index';
+import {fetchBeers} from '../actions/index';
 
 class ButtonContDetail extends Component {
 
